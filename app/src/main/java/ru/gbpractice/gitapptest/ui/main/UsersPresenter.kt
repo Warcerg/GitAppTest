@@ -33,7 +33,6 @@ class UsersPresenter(private val userListRepo: UserListRepo) : UsersContract.Pre
                 isLoading = false
                 view?.showLoading(isLoading)
                 view?.showError(it)
-
             }
         )
     }
@@ -41,4 +40,12 @@ class UsersPresenter(private val userListRepo: UserListRepo) : UsersContract.Pre
     override fun onSelectUser(userEntity: UserEntity) {
         view?.showUserDetails(userEntity)
     }
+
+    fun initPresenterData(view: UsersContract.View, usersList: List<UserEntity>){
+        this.view = view
+        this.usersList = usersList
+    }
+
+    fun getPView() = view
+    fun getPPresenter() = userListRepo
 }
